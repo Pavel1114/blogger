@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load i18n static %}
 
 {% block title %}User: {{ object.username }}{% endblock %}
 
@@ -21,8 +21,8 @@
 <div class="row">
 
   <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
+    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">{% trans "My Info" %}</a>
+    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">{% trans "E-mail Addresses" %}</a>
     <!-- Your Stuff: Custom user template urls -->
   </div>
 
