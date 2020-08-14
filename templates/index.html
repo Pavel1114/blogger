@@ -12,20 +12,23 @@
         <p>{{ article.text|safe }}</p>
         <a href="{{ article.get_absolute_url }}" class="btn btn-primary btn-lg font-family-museo-cyrl-900">Читать</a>
       </div>
-      <div class="col-sm-4 align-self-center">
+      <div class="col-sm-4 align-self-center text-center">
         <img class="img-fluid" src="{{ article.image.url }}" alt="reading robot">
       </div>
     </div>
   {% endwith %}
-  <div class="row">
+  <div class="row align-items-stretch">
     {% for article in article_list|slice:'1:' %}
-      <div class="col-md-4 p-3 border">
-        <div class="position-absolute text-black-50">
-          <small>{{ article.created }}</small>
-        </div>
-        <div class="text-center">
-          <img src="{{ article.image.url }}" alt="image" class="img-fluid">
-          <div><a class="font-weight-bold" href="{{ article.get_absolute_url }}">{{ article.title }}</a></div>
+      <div class="col-md-4 p-2">
+        <div class="border p-2 h-100">
+          <div class="position-absolute text-black-50">
+            <small>{{ article.created }}</small>
+          </div>
+          <div class="text-center mt-4">
+            <img src="{{ article.image.url }}" alt="image" class="img-fluid">
+            <div><a class="font-weight-bold" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+            </div>
+          </div>
         </div>
       </div>
     {% endfor %}
