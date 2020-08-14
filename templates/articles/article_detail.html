@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+  <h1 class="text-primary">{{ article.title }}</h1>
+  <div class="text-center">
+    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid">
+  </div>
+  <p>{{ article.text|safe }}</p>
+{% endblock content %}
