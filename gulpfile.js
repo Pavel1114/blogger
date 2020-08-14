@@ -20,11 +20,13 @@ const rename = require('gulp-rename')
 const sass = require('gulp-sass')
 const spawn = require('child_process').spawn
 const uglify = require('gulp-uglify-es').default
+const tildeImporter = require('node-sass-tilde-importer')
+const sourcemaps = require('gulp-sourcemaps')
 
+const vendorsRoot = 'node_modules'
 // Relative paths function
 function pathsConfig(appName) {
   this.app = `./${pjson.name}`
-  const vendorsRoot = 'node_modules'
 
   return {
 
@@ -56,14 +58,16 @@ function styles() {
   ]
 
   return src(`${paths.sass}/project.scss`)
+    .pipe(sourcemaps.init())
     .pipe(sass({
       includePaths: [
-
         paths.sass
-      ]
+      ],
+      importer: tildeImporter
     }).on('error', sass.logError))
     .pipe(plumber()) // Checks for errors
     .pipe(postcss(processCss))
+    .pipe(sourcemaps.write())
     .pipe(dest(paths.css))
     .pipe(rename({ suffix: '.min' }))
     .pipe(postcss(minifyCss)) // Minifies the result
