@@ -5,7 +5,7 @@ volumes:
   local_postgres_data_backups: {}
 
 services:
-  django:
+  django: &django
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
@@ -21,6 +21,13 @@ services:
     ports:
       - "8000:8000"
     command: /start
+
+  # Use separate service because pycharm stop container after tests
+  pycharm:
+    <<: *django
+    image: blogger_local_pycharm
+    container_name: ""
+    ports: []
 
   postgres:
     build:
