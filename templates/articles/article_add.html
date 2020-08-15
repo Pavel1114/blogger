@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Добавить статью{% endblock %}
+
+{% block content %}
+  <h1 class="text-primary">Добавить статью</h1>
+  {% crispy form %}
+{% endblock content %}
+
+{% block javascript %}
+  {{ block.super }}
+  {{ form.media.js }}
+{% endblock javascript %}

@@ -3,8 +3,8 @@
 
 {% block content %}
   {% with article_list.first as article %}
-    <div class="row border-top border-bottom py-4 mb-3">
-      <div class="col-sm-8">
+    <div class="row border-bottom py-4 mb-3">
+      <div class="col-sm-8 mb-3">
         <div class="text-danger text-uppercase font-weight-bold">new</div>
         <h1 class="font-weight-bold">
           <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>

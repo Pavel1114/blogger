@@ -1,0 +1,6 @@
+<div class="js-image-preview"></div>
+<div class="text-center mt-3">
+  <label for="{{ field.auto_id }}" class="btn btn-primary btn-lg font-family-museo-cyrl-900" tabindex="{{ field.field.widget.attrs.tabindex }}">Файл</label>
+  <input id="{{ field.auto_id }}" class="js-image-upload-with-preview d-none{% if field.errors %} is-invalid{% endif %}" type="file" name="{{ field.name }}">
+  {{ field.errors }}
+</div>

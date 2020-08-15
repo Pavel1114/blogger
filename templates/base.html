@@ -29,7 +29,7 @@
 
 <body>
 
-<div class="mb-1">
+<div class="mb-3 border-bottom">
   <nav class="navbar navbar-expand-md navbar-light">
     <div class="container">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -66,7 +66,7 @@
             </li>
           {% endif %}
         </ul>
-        <a href="#" class="btn btn-primary btn-sm">+ Добавить статью</a>
+        <a href="{% url 'articles:article_add' %}" class="btn btn-primary btn-sm">+ Добавить статью</a>
       </div>
     </div>
   </nav>
@@ -88,6 +88,9 @@
   {% endblock content %}
 
 </div> <!-- /container -->
+<div class="mt-4 text-center text-secondary">
+  &copy; {% now 'Y' %} Pavel Karpets
+</div>
 
 {% block modal %}{% endblock modal %}
 
@@ -106,6 +109,25 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
           integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
           crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.9.4/tinymce.min.js"
+          integrity="sha512-MGz4lok7A2vu3S5dK81JL+GAC8HZYCFOkWmj4rRqcLjPD+SdJESAfdUNtrrO7IhAPgKxmRKJ4qg+4z3GgVCyrA=="
+          crossorigin="anonymous"></script>
+  <script>
+    tinymce.init({
+      selector: '.js-wysiwyg',
+      plugins: 'tabfocus',
+      tabfocus_elements: ':prev,:next',
+      menubar: false,
+      setup: function (editor) {
+        editor.on('change', function (){
+          editor.save()
+        });
+        editor.on('submit', function (){
+          console.log('submit');
+        })
+      }
+    })
+  </script>
 
   <!-- Your stuff: Third-party javascript libraries go here -->
 
