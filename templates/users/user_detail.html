@@ -24,6 +24,12 @@
     <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">{% trans "My Info" %}</a>
     <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">{% trans "E-mail Addresses" %}</a>
     <!-- Your Stuff: Custom user template urls -->
+    <h4 class="mt-2">Мои статьи</h4>
+    <ul class="list-unstyled">
+      {% for article in object.article_set.all %}
+        <li><a href="{{ article.get_absolute_url }}">{{ article }}</a></li>
+      {% endfor %}
+    </ul>
   </div>
 
 </div>
