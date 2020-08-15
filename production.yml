@@ -4,6 +4,7 @@ volumes:
   production_postgres_data: {}
   production_postgres_data_backups: {}
   production_traefik: {}
+  production_mediafiles: {}
 
 services:
   django:
@@ -17,6 +18,8 @@ services:
     env_file:
       - ./.envs/.production/.django
       - ./.envs/.production/.postgres
+    volumes:
+    - production_mediafiles:/mediafiles
     command: /start
 
   postgres:
@@ -42,6 +45,15 @@ services:
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"
+
+  nginx:
+    build:
+      context: compose/production/nginx
+      dockerfile: Dockerfile
+    image: blogger_production_nginx
+    volumes:
+      - production_mediafiles:/mediafiles
+
 
   redis:
     image: redis:5.0

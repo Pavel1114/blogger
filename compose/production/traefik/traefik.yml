@@ -42,6 +42,15 @@ http:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
+    media-secure-router:
+      rule: "Host(`blogger.karpets.pro`) && PathPrefix(`/media/`)"
+      entryPoints:
+        - web-secure
+      service: nginx
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
+
   middlewares:
     redirect:
       # https://docs.traefik.io/master/middlewares/redirectscheme/
@@ -59,6 +68,11 @@ http:
       loadBalancer:
         servers:
           - url: http://django:5000
+
+    nginx:
+      loadBalancer:
+        servers:
+          - url: http://nginx:80
 
 providers:
   # https://docs.traefik.io/master/providers/file/

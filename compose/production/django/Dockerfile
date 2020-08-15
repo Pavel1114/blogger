@@ -1,11 +1,3 @@
-FROM node:10-stretch-slim as client-builder
-
-WORKDIR /app
-COPY ./package.json /app
-RUN npm install && npm cache clean --force
-COPY . /app
-RUN npm run build
-
 # Python build stage
 FROM python:3.8-slim-buster
 
@@ -39,8 +31,11 @@ COPY ./compose/production/django/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 RUN chown django /start
-COPY --from=client-builder --chown=django:django /app /app
 
+RUN mkdir /mediafiles && chown -R django /mediafiles
+
+COPY . /app
+RUN chown -R django /app
 
 USER django
 
