@@ -16,3 +16,18 @@ blogger
 [![index page](./info/add_article_3_thumb.png)](./info/add_article_3_thumb.png)
 
 [![index page](./info/article_detail_thumb.png)](./info/article_detail.png)
+
+### Development
+
+````
+git clone https://github.com/Pavel1114/blogger.git
+
+docker-compose -f local.yml up
+````
+
+для компилляция sass и другой статики используется gulp
+
+```
+npm i
+npm run dev
+```
